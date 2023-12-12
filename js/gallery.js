@@ -66,15 +66,15 @@ const images = [
 
 const galleryList = document.querySelector(".gallery");
 
-const markup = images.reduce((html, item) => {
+const markup = images.reduce((html, {original, preview, description}) => {
     return html += `
     <li class="gallery-item">
-    <a class="gallery-link" href="${item.original}">
+    <a class="gallery-link" href="${original}">
       <img
         class="gallery-image"
-        src="${item.preview}"
-        data-source="${item.original}"
-        alt="${item.description}"
+        src="${preview}"
+        data-source="${original}"
+        alt="${description}"
       />
     </a>
   </li>`
