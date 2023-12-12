@@ -90,17 +90,19 @@ galleryList.addEventListener("click", (event) => {
     return;
   }
 
+  function handleEscapePress(event) {
+    if (event.code === "Escape") {
+      instance.close()
+    }
+  }
+
   const instance = basicLightbox.create(
-    `<img src = "${imgSource}" width = "800" height = "600">`
+    `<img src = "${imgSource}" width = "800" height = "600">`,
+    {
+      onShow: () => document.addEventListener("keydown", handleEscapePress),
+      onClose: () => document.removeEventListener("keydown", handleEscapePress)
+    }
   );
 
   instance.show();
-
-  const handleKeydown = galleryList.addEventListener("keydown", (event) => {
-    if (event.code === "Escape") {
-      instance.close()
-      console.log("Escape");
-      galleryList.removeEventListener("keydown", handleKeydown)
-    }
-  })
 });
