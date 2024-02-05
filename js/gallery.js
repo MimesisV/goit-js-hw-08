@@ -66,6 +66,28 @@ const images = [
 
 const galleryList = document.querySelector(".gallery");
 
+
+function makeMarcup (img) {
+    const galleryMarcup = img.map(({preview, original, description}) => 
+  `
+    <li class="gallery-item">
+      <a class="gallery-link" href="${original}">
+        <img
+        class="gallery-image"
+          src="${preview}"
+          data-source="${original}"
+          alt="${description}"
+        />
+      </a>
+    </li>
+  `
+  ).join('');
+
+  galleryList.insertAdjacentHTML("beforeend", galleryMarcup);
+}
+
+makeMarcup(images);
+
 const galleryMarcup = images.map(({preview, original, description}) => 
 `
   <li class="gallery-item">
